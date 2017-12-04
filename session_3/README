@@ -1,0 +1,10 @@
+Required packages:
+
+express
+body-parser
+mysql
+
+If you'd like to run a mysql docker container:
+
+1. Download and install docker
+2. Once running, run `docker-compose up -d` in the ./session_3/ directory
