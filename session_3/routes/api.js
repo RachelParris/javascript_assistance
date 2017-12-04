@@ -1,7 +1,7 @@
 var express = require('express');
 
 var router = express.Router();
-var data = require('../data.js');
+var data = require('../model/data.js');
 
 router.get('/users/:id/field/:field', function (req, res) {
 	console.log('req.params', req.params);
