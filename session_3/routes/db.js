@@ -30,11 +30,42 @@ router.get('/createTable', function (req, res) {
   res.send('Table has been created');
 });
 
+var insertExample = " \
+  INSERT INTO Persons (PersonID, LastName, FirstName, Address, City) \
+  VALUES (1, 'Parris', 'Rachel', 'Somewhere Awesome', 'Atlanta')";
+
+router.get('/insertExample', function (req, res) {
+  connection.connect();
+  connection.query(insertExample, function (err, rows, fields) {
+    if (err) {
+      throw err;
+    }
+    res.send('Rachel is now in the database');
+  });
+  connection.end();
+});
+
+var selectExample = "SELECT FirstName, LastName FROM Persons;";
+
+router.get('/all', function (req, res) {
+  connection.connect();
+  connection.query(selectExample, function (err, rows, fields) {
+    if (err) {
+      throw err;
+    }
+    console.log('rows', rows);
+    res.send('User selected from the database: ' + rows[0].FirstName + ' ' + rows[0].LastName);
+  });
+  connection.end();
+});
+
 var ans;
 router.get('/test', function (req, res) {
   connection.connect()
-  connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+  connection.query('SELECT 1 + 1 AS solution, 3 + 3 as anotherSolution', function (err, rows, fields) {
     if (err) throw err
+    console.log('rows', rows);
+    console.log('fields', fields);
     ans = rows[0].solution
     res.send('The solution is: ' + ans);
   });

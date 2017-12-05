@@ -5,7 +5,7 @@ var data = require('../model/data.js');
 
 router.get('/users/:id/field/:field', function (req, res) {
 	console.log('req.params', req.params);
-	res.send('Here\s the value from the Params:\n' + data[req.params.id-1][req.params.field]);
+	res.send('Here\s the value from the Params:\n' + data[req.params.id][req.params.field]);
 });
 
 router.get('/usersAgain', function (req, res) {
